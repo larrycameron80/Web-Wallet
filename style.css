@@ -6,9 +6,9 @@
 	.section.new-wallet {background-color: #c4f1d9}
 	.section.recover-wallet {background-color: #c4d9f1}
 	.section.generate-transaction {background-color: #d9c4f1}
-	
+	/*
 	.section{display:none;}
-	.section.sign-transaction{display: block}
+	.section.sign-transaction{display: block}*/
 	.section.sign-transaction {background-color: #707c91}
 
 
