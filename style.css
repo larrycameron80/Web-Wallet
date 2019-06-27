@@ -3,12 +3,12 @@
 	.page{width:740px; max-width:95%; margin: 0 auto;}
 	.section { border :1px solid black; padding: 17px ; margin-top:16px;}
 
-	.section.recover-wallet {background-color: #1b273a}
-	.section.generate-transaction {background-color: #1b273a}
+	.section.recover-wallet {background-color: #101010}
+	.section.generate-transaction {background-color: #101010}
 	/*
 	.section{display:none;}
 	.section.sign-transaction{display: block}*/
-	.section.sign-transaction {background-color: #1b273a}
+	.section.sign-transaction {background-color: #101010}
 
 
 	.half{width: 50%; float: left; martin :10px;}
@@ -24,8 +24,7 @@
 	
 
 	input[readonly] , textarea[readonly] {background-color: #d5d5d5}
-	h3, h4, h5	{width: 100%; text-align: center; margin : 5px; color: white; }
-	h3 {margin-bottom: 10px}
+	h3, h4, h5	{width: 100%; text-align: center; margin : 15px 5px; color: white; }
 	.note { display:none; color: white; margin-top: 20px;}
 
 
