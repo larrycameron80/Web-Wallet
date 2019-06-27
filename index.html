@@ -1,0 +1,113 @@
+<head>
+	<script src="bundle.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="script.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="page">
+
+		<div class="section new-wallet" >
+			<button id="generate-wallet" >GENERATE NEW WALLET</button>
+			<h4 class="note new-wallet">Keep mnemonic and private key on secure place (recomanded offline)<br> they are the key for your wallet. <br>You will lose access to your funds if you lose it<br>We don't keep a copy for you</h4>
+			<h4>New Mnemonic</h4>
+
+			<textarea id="new-mnemonic" readonly ></textarea>
+			<br>
+			<h4>New Private Key</h4>
+			<input  id="new-private" val=""  readonly />
+			<h4>New Public Key</h4>
+			<input  id="new-public" val="" readonly  />
+			<h4>New Spend Address</h4>
+			<input  id="new-address" val="" readonly />
+		</div>
+
+		<div class="section recover-wallet" >
+			<h3 id="recover-wallet" >REGENERATE WALLET FROM MNEMONIC</h3>
+
+			<h4>Insert Mnemonic</h4>
+			<textarea id="old-mnemonic" ></textarea>
+			<br>
+			<h4>Private Key</h4>
+			<input  id="private-from-mnemonic" val="" readonly />
+			<h4>Public Key</h4>
+			<input  id="public-from-mnemonic" val="" readonly />
+			<h4>Spend Address</h4>
+			<input  id="address-from-mnemonic" val="" readonly />
+		</div>
+
+		<div class="section generate-transaction" >
+			<h3 >Generate Transaction</h3>
+			<br>
+			<h4>From Address</h4>
+			<input  id="from-address" val=""  />
+			<br>
+			<h4>To Address</h4>
+			<input  id="to-address" val=""  />
+			<br>
+			<div class="half">
+				<h4>Amount</h4>
+				<input  id="amount" type="number"  val=""  />
+				<br>
+			</div>
+			<div class="half">
+				<h4>Coin</h4>
+				<select  id="coin" val=""  >
+					<option>stake</option>
+					<option>spend</option>
+				</select>
+			</div>
+
+			<br><br><br><br>
+
+			<h4>indent<input type="checkbox" id="indent" checked></input></h4>
+			
+			<h4>New Transaction</h4>
+			<textarea  id="new-tx" readonly ></textarea>
+		</div>
+
+		<div class="section sign-transaction" >
+			<h3 >Sign Transaction</h3>
+			<textarea  id="tx"  ></textarea>
+			<div class="half">
+
+				<h4>Account Number</h4>
+				<input  id="account-number" type="number" val=""  />
+			</div>
+			<div class="half">
+
+				<h4>Sequence</h4>
+				<input  id="sequence"  type="number" val=""  />
+			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+
+			<h4>indent<input type="checkbox" id="indent" checked></input></h4>
+			
+			<button id="request-info" >Request <br> Account Number And Sequence 
+				<BR>From Full Node</button>
+
+
+			<h3>Insert Mnemonic or Private Key to Sign the transaction</h3>
+			<div class="half">
+				<h4>Mnemonic</h4>
+				<textarea id="mnemonic-for-sign" ></textarea>
+			</div>
+			<div class="half">
+				<h4>Private Key</h4>
+				<textarea id="private-for-sign" ></textarea>
+			</div>
+				<br>
+			<h4>Signed Transaction</h4>
+		</div>
+	</div>
+
+
+
+
+
+</body>

@@ -1,0 +1,33 @@
+	body {background-color: black;opacity :1}
+
+	.page{width:740px; max-width:95%; margin: 0 auto;}
+	.section { border :1px solid black; padding: 17px ; margin-top:16px;}
+
+	.section.new-wallet {background-color: #c4f1d9}
+	.section.recover-wallet {background-color: #c4d9f1}
+	.section.generate-transaction {background-color: #d9c4f1}
+	
+	.section{display:none;}
+	.section.sign-transaction{display: block}
+	.section.sign-transaction {background-color: #707c91}
+
+
+	.half{width: 50%; float: left; martin :10px;}
+	textarea , select , 	input	{width: 100%; padding:10px;}
+	/*select	{font-size:20px;}*/
+
+	button {width:54%; margin : auto 23% ; padding :10px; font-weight: bold ; text-transform: uppercase;}
+
+		
+	 textarea#new-tx{ height: 410px;}
+	 /*textarea#new-tx{ height: 107px;}*/
+
+
+
+	input[readonly] , textarea[readonly] {background-color: #d5d5d5}
+	h3, h4, h5	{width: 100%; text-align: center; margin : 5px }
+	h3 {margin-bottom: 10px}
+	.note { display:none; color: #d06c6c;}
+
+
+	input[type=checkbox]{width:unset;padding:25px;}

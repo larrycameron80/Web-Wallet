@@ -3,6 +3,8 @@ let spendCrypto = require("./crypto")
 
 
 module.exports = {
+    bufferFromHex: spendCrypto.bufferFromHex,
     getWalletFromSeed: spendCrypto.getWalletFromSeed,
-    signWithPrivateKey: spendCrypto.signWithPrivateKey
+    signWithPrivateKey: spendCrypto.signWithPrivateKey,
+    generateMnemonic: spendCrypto.generateMnemonic
 }

@@ -29,6 +29,9 @@ function signWithPrivateKey(signMessage, privateKey) {
     const signMessageString =
         typeof signMessage === 'string' ? signMessage : "" + JSON.stringify(signMessage)
     const signHash = Buffer.from(CryptoJS.SHA256(signMessageString).toString(), `hex`)
+    
+
+    console.log(signHash)
     // const auuu = secp256k1.sign(signHash, privateKey)
     const signature = secp256k1.sign(signHash, privateKey)
     // const { signature } = secp256k1.sign(signHash, privateKey)
@@ -78,8 +81,17 @@ function deriveKeypair(masterKey) {
         public
     }
 }
+function generateMnemonic() {
+    return bip39.generateMnemonic(256)
+}
+
+function bufferFromHex(hexString){
+    return Buffer.from(hexString , `hex`)
+}
 
 module.exports = {
+    bufferFromHex,
     getWalletFromSeed,
-    signWithPrivateKey
+    signWithPrivateKey,
+    generateMnemonic
 }

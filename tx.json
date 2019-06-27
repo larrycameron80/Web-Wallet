@@ -1,1 +1,26 @@
-{"type":"auth/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgSend","value":{"from_address":"spend1d8lyh058z20g27y2z0gu29k8vnf57dvfq75rgr","to_address":"spend159sfnmsar0zh0fk3974un9f5x6qkaqx5am9gew","amount":[{"denom":"stake","amount":"500"}]}}],"fee":{"amount":[],"gas":"200000"},"signatures":null,"memo":""}}
+{
+  "type": "auth/StdTx",
+  "value": {
+    "msg": [
+      {
+        "type": "cosmos-sdk/MsgSend",
+        "value": {
+          "from_address": "spend1d8lyh058z20g27y2z0gu29k8vnf57dvfq75rgr",
+          "to_address": "spend159sfnmsar0zh0fk3974un9f5x6qkaqx5am9gew",
+          "amount": [
+            {
+              "denom": "stake",
+              "amount": "500"
+            }
+          ]
+        }
+      }
+    ],
+    "fee": {
+      "amount": [],
+      "gas": "200000"
+    },
+    "signatures": null,
+    "memo": ""
+  }
+}

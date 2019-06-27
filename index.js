@@ -17,6 +17,10 @@ const recursiveSortJson = utils.abcSortJson
 //   console.log(util.inspect(object, false, null, true))
 // }
 
+window.utils = utils;
+window.spendCrypto = spendCrypto;
+
+// return;
 
 
 
@@ -30,6 +34,11 @@ delete (tx.msg)
 console.log(tx, tx.msgs[0].value)
 tx = recursiveSortJson(tx);
 
+
+
+console.log( "tx tuka e dobro" )
+console.log( tx)
 privateKey = wallet.keys.private.buffer;
 signature = signWithPrivateKey(tx, privateKey).signature.toString("base64");
 console.log(signature)
+
