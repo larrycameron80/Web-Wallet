@@ -3,13 +3,12 @@
 	.page{width:740px; max-width:95%; margin: 0 auto;}
 	.section { border :1px solid black; padding: 17px ; margin-top:16px;}
 
-	.section.new-wallet {background-color: #c4f1d9}
-	.section.recover-wallet {background-color: #c4d9f1}
-	.section.generate-transaction {background-color: #d9c4f1}
+	.section.recover-wallet {background-color: #1b273a}
+	.section.generate-transaction {background-color: #1b273a}
 	/*
 	.section{display:none;}
 	.section.sign-transaction{display: block}*/
-	.section.sign-transaction {background-color: #707c91}
+	.section.sign-transaction {background-color: #1b273a}
 
 
 	.half{width: 50%; float: left; martin :10px;}
@@ -22,12 +21,28 @@
 	 textarea#new-tx{ height: 410px;}
 	 /*textarea#new-tx{ height: 107px;}*/
 
-
+	
 
 	input[readonly] , textarea[readonly] {background-color: #d5d5d5}
-	h3, h4, h5	{width: 100%; text-align: center; margin : 5px }
+	h3, h4, h5	{width: 100%; text-align: center; margin : 5px; color: white; }
 	h3 {margin-bottom: 10px}
-	.note { display:none; color: #d06c6c;}
+	.note { display:none; color: white; margin-top: 20px;}
 
 
 	input[type=checkbox]{width:unset;padding:25px;}
+
+	.btn-primary {
+		margin-top: 40px;
+	}
+
+	textarea {
+		height: auto !important;
+		background-color: white !important;
+	}
+	.mnemonic-for-sign {
+		height: auto !important;
+	}
+
+	a {
+		color:white;
+	}

@@ -147,7 +147,7 @@ $(document).ready(function(){
 		  dataType: "json",
 		  url: url+fromAddress,
 		  success: function(response){
-		  		$("#account-number").val(response.account.value.account_number)
+		  		$("#account-number").val(response.value.account_number)
 		  		$("#sequence").val(response.account.value.sequence)
 		  }
 		});

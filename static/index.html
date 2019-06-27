@@ -1,0 +1,62 @@
+<head>
+	<script src="../bundle.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../script.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="#">
+                <a href="#" class="navbar-left"><img src="../public/logo.png" width="250px"></a>
+                Spend</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">New Wallet</a></li>
+          <li><a href="#">Send Spend</a></li> 
+          <li><a href="#">Check Transactions</a></li> 
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Subscribe</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>  
+<body>
+	<div class="container">
+
+		<div class="section new-wallet" >
+
+            <h4>New Mnemonic</h4>		
+			<textarea id="new-mnemonic" readonly ></textarea>
+			<br>
+			<h4>New Private Key</h4>
+			<input  id="new-private" val=""  readonly />
+			<h4>New Public Key</h4>
+			<input  id="new-public" val="" readonly  />
+			<h4>New Spend Address</h4>
+			<input  id="new-address" val="" readonly />
+        	<button class="btn btn-primary" type="submit" id="generate-wallet" >GENERATE NEW WALLET</button>
+			<h4 class="note new-wallet">Keep mnemonic and private key on secure place (recomended offline)<br> they are the key for your wallet. <br>You will lose access to your funds if you lose it<br>We don't keep a copy for you</h4>
+
+        </div>
+    	</div>
+
+
+
+
+
+</body>
