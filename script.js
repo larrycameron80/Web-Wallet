@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	// test()
+	 test()
 
 	function test(){
 		var autoRefresh = { timeout:false , interval:false , index:1 , change:0 }
@@ -33,7 +33,6 @@ $(document).ready(function(){
 			$("input#amount").val(500)
 			$("select#coin").val("stake")
 			
-			$("input , textarea").on("change click", function (){ setAutoRefresh() })
 		
 			$("textarea#old-mnemonic").change()
 			$("input#from-address").change()
@@ -46,7 +45,8 @@ $(document).ready(function(){
 			$("#mnemonic-for-sign").val($("#old-mnemonic").val())
 			$("#mnemonic-for-sign").change();
 
-			setAutoRefresh()
+			// $("input , textarea").on("change click", function (){ setAutoRefresh() })
+			// setAutoRefresh()
 		})
 	}
 
@@ -107,8 +107,8 @@ $(document).ready(function(){
 	       "to_address": 	$("#to-address").val().trim().replace(/\s{1,}/g, ''),
 	       "amount":[
 	          {
-	             "denom": 	$("#amount").val()*1,
-	             "amount": 	$("#coin").val()
+	             "denom": 	$("#coin").val(),
+	             "amount": 	$("#amount").val()
 	          }
 	       ]
 	    }
@@ -175,29 +175,20 @@ $(document).ready(function(){
 			var tx = JSON.parse($("#tx").val());
 
 			tx = tx.value
-			tx["account_number"] = "0";
-			tx["sequence"] = "6";
-
+			tx["account_number"] = $("#account-number").val()
+			tx["sequence"] = $("#sequence").val()
 			tx["chain_id"] = "spend";
 			tx["msgs"] = tx["msg"];
 			delete (tx.msg);
-
 			tx = utils.abcSortJson(tx);
-
-
-			console.log("tx tuka neznam")
-			console.log(tx)
+// 
+			// console.log(JSON.stringify(tx))
 
 			var privHex =$("#private-for-sign").val().trim().replace(/\s{2,}/g, ' ');
-
 			var priv = spendCrypto.bufferFromHex(privHex)
-
-
-
-			console.log("priv")
-			console.log(priv)
 			var signature = spendCrypto.signWithPrivateKey(tx ,priv ).signature.toString("base64") 
-	 		console.log(signature)
+
+	 		$("#signature").val(signature)
 
 	 })
 

@@ -31,7 +31,7 @@ function signWithPrivateKey(signMessage, privateKey) {
     const signHash = Buffer.from(CryptoJS.SHA256(signMessageString).toString(), `hex`)
     
 
-    console.log(signHash)
+    // console.log(signHash)
     // const auuu = secp256k1.sign(signHash, privateKey)
     const signature = secp256k1.sign(signHash, privateKey)
     // const { signature } = secp256k1.sign(signHash, privateKey)
