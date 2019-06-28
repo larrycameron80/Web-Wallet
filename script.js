@@ -26,9 +26,10 @@ $(document).ready(function(){
 			},25000)
 		}
 		$(document).ready(function(){
-			$("textarea#old-mnemonic").val("forward coconut salmon illegal now random select suit seminar click recall hen rhythm improve oven core utility rain enable energy fish lounge follow such")
 
-			$("input#from-address").val("spend1d8lyh058z20g27y2z0gu29k8vnf57dvfq75rgr")
+			$("input#from-address").val($("#address-from-mnemonic").val())
+			$("input#from-address").change()
+
 			$("input#to-address").val("")
 			$("input#amount").val(500)
 			$("select#coin").val("stake")
