@@ -11,7 +11,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-    </script>
+        </script>
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -29,7 +29,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li ><a href="#">New Wallet</a></li>
+                <li><a href="#">New Wallet</a></li>
                 <li class="active"><a href="#">Send Spend</a></li>
                 <li><a href="#">Check Transactions</a></li>
             </ul>
@@ -39,7 +39,6 @@
         </div>
     </div>
 </nav>
-
 <body>
     <div class="container">
 
@@ -52,6 +51,8 @@
         </ul>
 
         <div class="tab-content">
+
+            <!-- Generate from Mnemonic -->
             <div id="recover" class="tab-pane fade in active">
                 <div class="section recover-wallet">
                     <h3 id="recover-wallet">REGENERATE WALLET FROM MNEMONIC</h3>
@@ -67,11 +68,10 @@
                     <input id="address-from-mnemonic" val="" readonly />
                 </div>
                 <a data-toggle="pill" href="#create-tx">
-                    <button type="button" class="btn-primary">Next</button></a>
-
+                    <button type="button" class="btn-primary">Next</button>
+                </a>
             </div>
-
-
+            <!-- Create Transaction -->
             <div id="create-tx" class="tab-pane fade">
                 <div class="section generate-transaction">
                     <h3>Generate Transaction</h3>
@@ -96,22 +96,21 @@
                     </div>
 
                     <br><br><br><br>
-
                     <h4>indent<input type="checkbox" id="indent" checked></input></h4>
                 </div>
                 <!-- <h4>New Transaction</h4> -->
-                <textarea rows="26" id="new-tx" readonly style="display:none"></textarea>
+                <!-- <textarea rows="26" id="new-tx" readonly style="display:none"></textarea> -->
                 <a data-toggle="pill" href="#account">
                     <button type="button" class="btn-primary">Next</button>
                 </a>
-
             </div>
+             <!-- Account Info -->
             <div id="account" class="tab-pane fade">
                 <div class="section sign-transaction">
                     <h3>Account Information</h3>
                     <h5>Insert your Account Sequence and Number or click the button to request them from Full-Node</h5>
 
-                    <textarea style="display:none" rows="26" id="tx"></textarea>
+                    <textarea style="display:none" rows="26" id="new-tx"></textarea>
                     <div class="half">
 
                         <h4>Account Number</h4>
@@ -128,10 +127,11 @@
                     <h4>indent<input type="checkbox" id="indent" checked></input></h4>
                     <button id="request-info" class="btn-primary">Request From Full Node</button>
                     <a data-toggle="pill" href="#verify">
-                            <button type="button" class="btn-primary">Next</button>
+                        <button type="button" class="btn-primary">Next</button>
                     </a>
                 </div>
             </div>
+            <!-- Verify Transaction -->
             <div id="verify" class="tab-pane fade">
                 <div class="section sign-transaction">
                     <h3>Verify Your Transaction</h3>
@@ -139,10 +139,11 @@
                     <h3 class>Signature</h3>
                     <input id="signature" readonly val="" />
                 </div>
-                <a data-toggle="pill" href="#verify">
-                        <button type="send" class="btn-primary">Next</button>
+                <a data-toggle="pill" href="#send">
+                    <button type="send" class="btn-primary">Next</button>
                 </a>
             </div>
+            <!-- Send Transaction -->
             <div id="send" class="tab-pane fade">
                 <h3>Insert Mnemonic or Private Key to Sign the transaction</h3>
                 <div class="half">
@@ -155,10 +156,10 @@
                 </div>
                 <br>
                 <h3 class>Signature</h3>
-                <input id="signature" readonly val="" />
-                <button type="button" class="btn-primary">Broadcast Transaction</button>
-
+                <input id="signature-send" readonly val="" />
+                <button id="send-transaction" type="button" class="btn-primary">Send Transaction</button>
             </div>
+            
         </div>
 
 

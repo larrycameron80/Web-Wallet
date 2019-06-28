@@ -29,11 +29,10 @@ $(document).ready(function(){
 			$("textarea#old-mnemonic").val("forward coconut salmon illegal now random select suit seminar click recall hen rhythm improve oven core utility rain enable energy fish lounge follow such")
 
 			$("input#from-address").val("spend1d8lyh058z20g27y2z0gu29k8vnf57dvfq75rgr")
-			$("input#to-address").val("spend159sfnmsar0zh0fk3974un9f5x6qkaqx5am9gew")
+			$("input#to-address").val("")
 			$("input#amount").val(500)
 			$("select#coin").val("stake")
-			
-		
+
 			$("textarea#old-mnemonic").change()
 			$("input#from-address").change()
 			$("#generate-wallet").click()
@@ -45,8 +44,6 @@ $(document).ready(function(){
 			$("#mnemonic-for-sign").val($("#old-mnemonic").val())
 			$("#mnemonic-for-sign").change();
 
-			// $("input , textarea").on("change click", function (){ setAutoRefresh() })
-			// setAutoRefresh()
 		})
 	}
 
@@ -133,16 +130,10 @@ $(document).ready(function(){
 	})
 
 	$("#request-info").on("click",function(){
-
-
 		var tx = JSON.parse($("#tx").val());
-
 		var fromAddress = tx.value.msg[0].value.from_address
-
-
 	   // this can be configurable too
 		var url = "http://18.185.105.50:9071/auth/accounts/"
-
 		$.ajax({
 		  dataType: "json",
 		  url: url+fromAddress,
@@ -167,7 +158,6 @@ $(document).ready(function(){
 		if(wallet.address.bech32.string == addressFrom){
 			$("#private-for-sign").change();
 		}
-
 	 })
 
 
@@ -188,9 +178,33 @@ $(document).ready(function(){
 			var priv = spendCrypto.bufferFromHex(privHex)
 			var signature = spendCrypto.signWithPrivateKey(tx ,priv ).signature.toString("base64") 
 
-	 		$("#signature").val(signature)
+			 $("#signature").val(signature)
+			 $("#signature-send").val(signature)
 
 	 })
 
 
+	 $("#send-transaction").on("click",function(){
+
+		var tx = JSON.parse($("#tx").val());
+		console.log(tx)
+	
+		var fromAddress = tx.value.msg[0].value.from_address
+	
+	
+		// this can be configurable too
+		var url = "http://18.185.105.50:9071/auth/accounts/"
+	
+		$.ajax({
+		  dataType: "json",
+		  url: url+fromAddress,
+		  success: function(response){
+				  $("#account-number").val(response.account.value.account_number)
+				  $("#sequence").val(response.account.value.sequence)
+		  }
+		});
+	
+	})
+	
 })
+

@@ -9,37 +9,37 @@ window.spendCrypto = require("./spend-crypto");
 
 
 
-// let getWalletFromSeed = spendCrypto.getWalletFromSeed
-// let wallet = getWalletFromSeed(seed)
-// let signWithPrivateKey =  spendCrypto.signWithPrivateKey
-// const recursiveSortJson = utils.abcSortJson
+let getWalletFromSeed = spendCrypto.getWalletFromSeed
+let wallet = getWalletFromSeed(seed)
+let signWithPrivateKey =  spendCrypto.signWithPrivateKey
+const recursiveSortJson = utils.abcSortJson
 
-// function log(object) {
-//   console.log(util.inspect(object, false, null, true))
-// }
+function log(object) {
+  console.log(util.inspect(object, false, null, true))
+}
 
-// return;
+return;
 
-// let tx = require("./tx.json")
-// const seed = "forward coconut salmon illegal now random select suit seminar click recall hen rhythm improve oven core utility rain enable energy fish lounge follow such"
-
-
-// tx = tx.value
-// tx["chain_id"] = "spend";
-// tx["account_number"] = "0";
-// tx["sequence"] = "6";
-// tx["msgs"] = tx["msg"];
-// delete (tx.msg)
-
-// console.log(tx, tx.msgs[0].value)
-// tx = recursiveSortJson(tx);
+let tx = require("./tx.json")
+const seed = "forward coconut salmon illegal now random select suit seminar click recall hen rhythm improve oven core utility rain enable energy fish lounge follow such"
 
 
+tx = tx.value
+tx["chain_id"] = "spend";
+tx["account_number"] = "0";
+tx["sequence"] = "6";
+tx["msgs"] = tx["msg"];
+delete (tx.msg)
+
+console.log(tx, tx.msgs[0].value)
+tx = recursiveSortJson(tx);
 
 
 
-// privateKey = wallet.keys.private.buffer;
-// signature = signWithPrivateKey(tx, privateKey).signature.toString("base64");
-// console.log(signature)
+
+
+privateKey = wallet.keys.private.buffer;
+signature = signWithPrivateKey(tx, privateKey).signature.toString("base64");
+console.log(signature)
 
 
