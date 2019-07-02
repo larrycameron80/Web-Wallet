@@ -81,6 +81,15 @@ function deriveKeypair(masterKey) {
         public
     }
 }
+
+function getAddressFromPrivateKey(privateHex){
+    const pubKey = secp256k1.publicKeyCreate(Buffer.from(privateHex , `hex`), true)
+    const publicKey = pubKey.toString("base64")
+    const address = getAddress(pubKey.toString("hex")).bech32.string
+
+    return {publicKey , address}
+}
+
 function generateMnemonic() {
     return bip39.generateMnemonic(256)
 }
@@ -93,5 +102,6 @@ module.exports = {
     bufferFromHex,
     getWalletFromSeed,
     signWithPrivateKey,
+    getAddressFromPrivateKey,
     generateMnemonic
 }

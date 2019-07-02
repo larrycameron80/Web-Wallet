@@ -39,11 +39,11 @@ $(document).ready(function(){
 			$("#generate-wallet").click()
 			
 			$("#tx").val( $("#new-tx").val()) 
-			$("#tx").change()
 			$("#request-info").click()
 
 			$("#mnemonic-for-sign").val($("#old-mnemonic").val())
 			$("#mnemonic-for-sign").change();
+			$("#tx").change()
 
 			// $("input , textarea").on("change click", function (){ setAutoRefresh() })
 			// setAutoRefresh()
@@ -76,6 +76,16 @@ $(document).ready(function(){
 	      "memo":""
 	   }
 	}
+
+   var signatureTemplate= {
+     "pub_key": {
+       "type": "tendermint/PubKeySecp256k1",
+       "value": ""
+     },
+     "signature": ""
+   }
+    
+
 	var newTx = JSON.parse(JSON.stringify(txTemplate))
 
 
@@ -149,6 +159,7 @@ $(document).ready(function(){
 		  success: function(response){
 		  		$("#account-number").val(response.account.value.account_number)
 		  		$("#sequence").val(response.account.value.sequence)
+		  		$("#sequence").change()
 		  }
 		});
 
@@ -164,33 +175,73 @@ $(document).ready(function(){
 
 		var addressFrom = JSON.parse($("#tx").val()).value.msg[0].value.from_address
 
-		if(wallet.address.bech32.string == addressFrom){
-			$("#private-for-sign").change();
+		$("#private-for-sign").change();
+		
+
+	 })
+	 $("#tx").on("keyup change",function(){
+		$(" #private-for-sign").change()
+	 })
+
+
+	 $(" #private-for-sign , #indent-signed , #account-number , #sequence").on("keyup change",function(){
+		var tx = JSON.parse($("#tx").val());
+
+		tx = tx.value
+		tx["account_number"] = $("#account-number").val()
+		tx["sequence"] = $("#sequence").val()
+		tx["chain_id"] = "spend";
+		tx["msgs"] = tx["msg"];
+		delete (tx.msg);
+		tx = utils.abcSortJson(tx);
+		var privHex =$("#private-for-sign").val().trim().replace(/\s{2,}/g, ' ');
+
+		info  = spendCrypto.getAddressFromPrivateKey(privHex)
+		// {publicKey, address} = spendCrypto.getAddressFromPrivateKey(privHex)
+
+		var fromAddress = tx["msgs"][0].value.from_address
+
+		if(fromAddress == info.address){
+			var priv = spendCrypto.bufferFromHex(privHex)
+			var signature = spendCrypto.signWithPrivateKey(tx ,priv ).signature.toString("base64") 
+
+			var sigTamplate = JSON.parse(JSON.stringify(signatureTemplate))
+			
+			sigTamplate.signature=signature
+
+			// return to starting position	
+			tx =  JSON.parse($("#tx").val());
+
+
+			tx.signatures=[sigTamplate]
+
+
+	 		// $("#signature").val(signature)
+
+		   if($("#indent-signed").prop("checked")){
+		    	$("#signed-tx").val(JSON.stringify(tx, null, 2))
+		    	$("#signed-tx").height("595px")
+		   }else{
+		    	$("#signed-tx").val(JSON.stringify(tx))
+		    	$("#signed-tx").height("95px")
+		   }
+		}else{
+			$("#signed-tx").val("Please insert valid Mnemonic or Private Key")
 		}
 
 	 })
 
 
-	 $("#private-for-sign").on("keyup change",function(){
-			var tx = JSON.parse($("#tx").val());
-
-			tx = tx.value
-			tx["account_number"] = $("#account-number").val()
-			tx["sequence"] = $("#sequence").val()
-			tx["chain_id"] = "spend";
-			tx["msgs"] = tx["msg"];
-			delete (tx.msg);
-			tx = utils.abcSortJson(tx);
-// 
-			// console.log(JSON.stringify(tx))
-
-			var privHex =$("#private-for-sign").val().trim().replace(/\s{2,}/g, ' ');
-			var priv = spendCrypto.bufferFromHex(privHex)
-			var signature = spendCrypto.signWithPrivateKey(tx ,priv ).signature.toString("base64") 
-
-	 		$("#signature").val(signature)
-
-	 })
-
+	$("#broadcast").click(function(){
+		// $.ajax({
+		// 	type: "POST",
+		// 	url: "http://18.185.105.50:9071/txs",
+		// 	data:  $("#signed-tx").val(),
+		// 	dataType: "aplication/json"
+		// 	success: function(response){
+		// 		console.log(response)
+		// 	}
+		// });
+	});
 
 })

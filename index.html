@@ -86,7 +86,7 @@
 			<br>
 			<br>
 
-			<h4>indent<input type="checkbox" id="indent" checked></input></h4>
+			<h4>indent<input type="checkbox" id="indent-signed" checked></input></h4>
 			
 			<button id="request-info" >Request <br> Account Number And Sequence 
 				<BR>From Full Node</button>
@@ -103,12 +103,16 @@
 			</div><br>
 
 
-			<h4>To Address</h4>	
+<!-- 			<h4>Signature</h4>	
 			<input  id="signature" readonly val=""  />
-
-
+ -->
 			<h4>Signed Transaction</h4>
+			<textarea  id="signed-tx" readonly ></textarea>
 
+			<button id="broadcast" >BROADCAST</button>
+				<h4>HASH</h4>
+
+				<input  id="sequence"   val=""  />
 
 		</div>
 	</div>
