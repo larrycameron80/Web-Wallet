@@ -208,12 +208,29 @@ $(document).ready(function(){
 			var sigTamplate = JSON.parse(JSON.stringify(signatureTemplate))
 			
 			sigTamplate.signature=signature
+			sigTamplate.pub_key.value = info.publicKey
+
 
 			// return to starting position	
-			tx =  JSON.parse($("#tx").val());
+			tx =  {tx:JSON.parse($("#tx").val())};
 
 
-			tx.signatures=[sigTamplate]
+			tx.tx.value.signatures=[sigTamplate]
+
+
+
+			tx.tx = tx.tx.value
+			tx.mode="block"
+
+		tx["account_number"] = $("#account-number").val()
+		tx["sequence"] = $("#sequence").val()
+
+
+
+
+
+
+
 
 
 	 		// $("#signature").val(signature)
@@ -233,15 +250,26 @@ $(document).ready(function(){
 
 
 	$("#broadcast").click(function(){
-		// $.ajax({
-		// 	type: "POST",
-		// 	url: "http://18.185.105.50:9071/txs",
-		// 	data:  $("#signed-tx").val(),
-		// 	dataType: "aplication/json"
-		// 	success: function(response){
-		// 		console.log(response)
-		// 	}
-		// });
+
+		console.clear()
+		console.log($("#signed-tx").val())
+		var settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": "http://18.185.105.50:9071/txs",
+		"method": "POST",
+		"headers": {
+		"Content-Type": "application/json",
+
+		},
+		"data": $("#signed-tx").val()
+		}
+
+		$.ajax(settings).done(function (response) {
+		    $("#hash").val(response.txhash);
+		   // console.log(response);
+		})
+
 	});
 
 })
