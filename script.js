@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	 test()
+	 // test()
 
 	function test(){
 		var autoRefresh = { timeout:false , interval:false , index:1 , change:0 }
@@ -41,14 +41,29 @@ $(document).ready(function(){
 			$("#tx").val( $("#new-tx").val()) 
 			$("#request-info").click()
 
-			$("#mnemonic-for-sign").val($("#old-mnemonic").val())
+			$("#mnemonic-for-sign").val("forward coconut salmon illegal now random select suit seminar click recall hen rhythm improve oven core utility rain enable energy fish lounge follow such")
 			$("#mnemonic-for-sign").change();
 			$("#tx").change()
-
-			// $("input , textarea").on("change click", function (){ setAutoRefresh() })
-			// setAutoRefresh()
 		})
 	}
+
+
+   $("#continue-tx").click(function(){
+
+   	$("#tx").val($("#new-tx").val())
+   	$(".section.send-spend a[href='#sign']").click()
+   	$("#request-info").click()
+   })
+
+	$(".nav.navbar-nav a").click(function(){
+		// console.log(123)
+		$(".nav.navbar-nav li").removeClass("active")
+		$(this).parent().addClass("active")
+	   var section = $(".section."+$(this).attr("section"))
+	   $("body > .section").hide()
+	   section.show()
+
+	})
 
 	var txTemplate={
 	   "type":"auth/StdTx",
@@ -166,7 +181,8 @@ $(document).ready(function(){
 	})
 
 
-	 $("#mnemonic-for-sign").on("keyup change",function(){
+	 $("#make-signature").on("click",function(){
+	 // $("#mnemonic-for-sign").on("keyup change",function(){
 		var mnemonic = $("#mnemonic-for-sign").val().trim().replace(/\s{2,}/g, ' ');
 		var wallet = spendCrypto.getWalletFromSeed(mnemonic);
 
@@ -175,16 +191,40 @@ $(document).ready(function(){
 
 		var addressFrom = JSON.parse($("#tx").val()).value.msg[0].value.from_address
 
-		$("#private-for-sign").change();
-		
+		// $("#private-for-sign").change();
+		doSigning()
 
 	 })
 	 $("#tx").on("keyup change",function(){
-		$(" #private-for-sign").change()
+		// $(" #private-for-sign").change()
 	 })
 
 
-	 $(" #private-for-sign , #indent-signed , #account-number , #sequence").on("keyup change",function(){
+	 $("#broadcast-transaction").on("click",function(){
+			var settings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "http://18.185.105.50:9071/txs",
+				"method": "POST",
+				"headers": {
+					"Content-Type": "application/json",
+				},
+				"data": $("#signed-tx").val()
+			}
+			$.ajax(settings).done(function (response) {
+			    $("#hash").val(response.txhash);
+			    $("#view-tx").attr("href", "http://18.194.28.213:3000/transactions/"+response.txhash);
+
+       		$(".section.send-spend a[href='#broadcast']").click()
+			   // console.log(response);
+			})
+		})
+
+
+
+
+	 function doSigning(){
+	 // $(" #private-for-sign , #indent-signed , #account-number , #sequence").on("keyup change",function(){
 		var tx = JSON.parse($("#tx").val());
 
 		tx = tx.value
@@ -217,23 +257,11 @@ $(document).ready(function(){
 
 			tx.tx.value.signatures=[sigTamplate]
 
-
-
 			tx.tx = tx.tx.value
 			tx.mode="block"
 
-		tx["account_number"] = $("#account-number").val()
-		tx["sequence"] = $("#sequence").val()
-
-
-
-
-
-
-
-
-
-	 		// $("#signature").val(signature)
+			tx["account_number"] = $("#account-number").val()
+			tx["sequence"] = $("#sequence").val()
 
 		   if($("#indent-signed").prop("checked")){
 		    	$("#signed-tx").val(JSON.stringify(tx, null, 2))
@@ -246,30 +274,17 @@ $(document).ready(function(){
 			$("#signed-tx").val("Please insert valid Mnemonic or Private Key")
 		}
 
-	 })
+	 }
 
 
 	$("#broadcast").click(function(){
 
-		console.clear()
-		console.log($("#signed-tx").val())
-		var settings = {
-		"async": true,
-		"crossDomain": true,
-		"url": "http://18.185.105.50:9071/txs",
-		"method": "POST",
-		"headers": {
-		"Content-Type": "application/json",
-
-		},
-		"data": $("#signed-tx").val()
-		}
-
-		$.ajax(settings).done(function (response) {
-		    $("#hash").val(response.txhash);
-		   // console.log(response);
-		})
-
 	});
+
+	if(location.hash.substr(1)==""){
+		window.location="#send-spend"
+	}
+	 $("a[section='"+location.hash.substr(1)+"']" ).click()
+	 $("body").show()
 
 })
