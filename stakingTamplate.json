@@ -1,0 +1,24 @@
+{
+  "type": "auth/StdTx",
+  "value": {
+    "msg": [
+      {
+        "type": "cosmos-sdk/MsgDelegate",
+        "value": {
+          "delegator_address": "spend",
+          "validator_address": "spendvaloper",
+          "amount": {
+            "denom": "stake",
+            "amount": "150000000"
+          }
+        }
+      }
+    ],
+    "fee": {
+      "amount": [],
+      "gas": "200000"
+    },
+    "signatures": null,
+    "memo": ""
+  }
+}

@@ -45,3 +45,16 @@
 	a {
 		color:white;
 	}
+
+
+
+	body[section="send-spend"]  #create-tx,
+	body[section="staking"]  #delegate-tx,
+	body[section="send-spend"]  [href="#create-tx"],
+	body[section="staking"]  [href="#delegate-tx"]{display:show;}
+
+
+	body[section="send-spend"]  #delegate-tx ,
+	body[section="staking"]  #create-tx,
+	body[section="send-spend"]  [href="#delegate-tx"] ,
+	body[section="staking"]  [href="#create-tx"]{display:none;}

@@ -69,49 +69,83 @@
 		<input  id="address-from-mnemonic" val="" readonly />
 	</div>
 
-
-	<div class="container section send-spend">
+	<div class="container section send-spend staking">
 
      <ul class="nav nav-pills">
          <li class="active"><a data-toggle="pill" href="#create-tx">Create Transaction</a></li>
+         <li class="active"><a data-toggle="pill" href="#delegate-tx">Delegate Tokens</a></li>
          <li><a data-toggle="pill" href="#sign">Sign</a></li>
          <li><a data-toggle="pill" href="#broadcast">Brodcast</a></li>
      </ul>
      <div class="tab-content">
          <div id="create-tx" class="tab-pane  active">
              <div class="section generate-transaction">
-						<h3 >Generate Transaction</h3>
-						<br>
-						<h4>From Address</h4>
-						<input  id="from-address" val=""  />
-						<br>
-						<h4>To Address</h4>
-						<input  id="to-address" val=""  />
-						<br>
-						<div class="half">
-						<h4>Amount</h4>
-						<input  id="amount" type="number"  val=""  />
-						<br>
-						</div>
-						<div class="half">
-						<h4>Coin</h4>
-						<select  id="coin" val=""  >
-							<option>stake</option>
-							<option>spend</option>
-						</select>
-						</div>
+					<h3 >Generate Transaction</h3>
+					<br>
+					<h4>From Address</h4>
+					<input  id="from-address" val=""  />
+					<br>
+					<h4>To Address</h4>
+					<input  id="to-address" val=""  />
+					<br>
+					<div class="half">
+					<h4>Amount</h4>
+					<input  id="amount" type="number"  val=""  />
+					<br>
+					</div>
+					<div class="half">
+					<h4>Coin</h4>
+					<select  id="coin" val=""  >
+						<option>spend</option>
+						<option>stake</option>
+					</select>
+					</div>
 
-						<br><br><br><br>
+					<br><br><br><br>
 
-						<h4>indent<input type="checkbox" id="indent" checked></input></h4>
-						
-						<h4>New Transaction</h4>
-						<textarea style="display:none" id="new-tx" readonly ></textarea>
+					<h4>indent<input type="checkbox" id="indent" checked></input></h4>
+					
+					<h4>New Transaction</h4>
+					<textarea style="display:none" id="new-tx" readonly ></textarea>
 
-						<button type="button" id="continue-tx" class="btn-primary">Next</button>
+					<button type="button" id="continue-tx" class="btn-primary">Next</button>
 
 				</div>
 			</div>
+
+         <div id="delegate-tx" class="tab-pane active">
+             <div class="section generate-transaction">
+					<h3 >Delegate </h3>
+					<br>
+					<h4>From Delegator Address</h4>
+					<input  id="from-delegator" val="" placeholder="spend"  />
+					<br>
+					<h4>To Validator Address</h4>
+					<input  id="to-validator" val="" placeholder="spendvaloper" />
+					<br>
+					<div class="half">
+					<h4>Amount</h4>
+					<input  id="amount-stake" type="number"  />
+					<br>
+					</div>
+					<div class="half">
+					<h4>Coin</h4>
+					<input  id="coin-stake" disabled=""  value="stake"  />
+
+					</div>
+
+					<br><br><br><br>
+
+					<h4>indent<input type="checkbox" id="stake-indent" checked></input></h4>
+					
+					<h4>Start Delegating</h4>
+					<textarea style="display:none" id="stake-tx" readonly ></textarea>
+
+					<button type="button" id="continue-stake" class="btn-primary">Next</button>
+
+				</div>
+			</div>
+
 
          <div id="sign" class="tab-pane fade in ">
             <div class="section sign-transaction">
@@ -169,10 +203,5 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
 
 </body>
