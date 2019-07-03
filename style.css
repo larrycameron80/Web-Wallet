@@ -35,11 +35,11 @@
 	}
 
 	textarea {
-		height: auto !important;
+		/*height: auto !important;*/
 		background-color: white !important;
 	}
 	.mnemonic-for-sign {
-		height: auto !important;
+		/*height: auto !important;*/
 	}
 
 	a {
