@@ -3,51 +3,8 @@ module.exports={
     "hdPathAtom": "m/44'/118'/0'/0/0"
 }
 },{}],2:[function(require,module,exports){
-// let bip32 = require('bip32')
-// let bip39 = require('bip39')
-// let secp256k1 = require('secp256k1')
-// let CryptoJS = require('crypto-js')
-
 window.utils = require('./tools/index');
-
 window.spendCrypto = require("./spend-crypto");
-
-
-
-// let getWalletFromSeed = spendCrypto.getWalletFromSeed
-// let wallet = getWalletFromSeed(seed)
-// let signWithPrivateKey =  spendCrypto.signWithPrivateKey
-// const recursiveSortJson = utils.abcSortJson
-
-// function log(object) {
-//   console.log(util.inspect(object, false, null, true))
-// }
-
-// return;
-
-// let tx = require("./tx.json")
-// const seed = "forward coconut salmon illegal now random select suit seminar click recall hen rhythm improve oven core utility rain enable energy fish lounge follow such"
-
-
-// tx = tx.value
-// tx["chain_id"] = "spend";
-// tx["account_number"] = "0";
-// tx["sequence"] = "6";
-// tx["msgs"] = tx["msg"];
-// delete (tx.msg)
-
-// console.log(tx, tx.msgs[0].value)
-// tx = recursiveSortJson(tx);
-
-
-
-
-
-// privateKey = wallet.keys.private.buffer;
-// signature = signWithPrivateKey(tx, privateKey).signature.toString("base64");
-// console.log(signature)
-
-
 
 },{"./spend-crypto":127,"./tools/index":128}],3:[function(require,module,exports){
 // base-x encoding / decoding
@@ -31707,30 +31664,35 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":19,"minimalistic-assert":95,"minimalistic-crypto-utils":96}],78:[function(require,module,exports){
 module.exports={
-  "_from": "elliptic@^6.4.0",
+  "_args": [
+    [
+      "elliptic@6.5.0",
+      "/home/filip/spend-js"
+    ]
+  ],
+  "_from": "elliptic@6.5.0",
   "_id": "elliptic@6.5.0",
   "_inBundle": false,
   "_integrity": "sha512-eFOJTMyCYb7xtE/caJ6JJu+bhi67WCYNbkGSknu20pmM8Ke/bqOfdnZWxyoGN26JgfxTbXrsCkEw4KheCT/KGg==",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "elliptic@^6.4.0",
+    "raw": "elliptic@6.5.0",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "^6.4.0",
+    "rawSpec": "6.5.0",
     "saveSpec": null,
-    "fetchSpec": "^6.4.0"
+    "fetchSpec": "6.5.0"
   },
   "_requiredBy": [
     "/secp256k1",
     "/tiny-secp256k1"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.0.tgz",
-  "_shasum": "2b8ed4c891b7de3200e14412a5b8248c7af505ca",
-  "_spec": "elliptic@^6.4.0",
-  "_where": "/home/sam/Desktop/spend-js/spend-js/node_modules/tiny-secp256k1",
+  "_spec": "6.5.0",
+  "_where": "/home/filip/spend-js",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -31738,7 +31700,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -31748,7 +31709,6 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
-  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -36629,6 +36589,15 @@ function deriveKeypair(masterKey) {
         public
     }
 }
+
+function getAddressFromPrivateKey(privateHex){
+    const pubKey = secp256k1.publicKeyCreate(Buffer.from(privateHex , `hex`), true)
+    const publicKey = pubKey.toString("base64")
+    const address = getAddress(pubKey.toString("hex")).bech32.string
+
+    return {publicKey , address}
+}
+
 function generateMnemonic() {
     return bip39.generateMnemonic(256)
 }
@@ -36641,6 +36610,7 @@ module.exports = {
     bufferFromHex,
     getWalletFromSeed,
     signWithPrivateKey,
+    getAddressFromPrivateKey,
     generateMnemonic
 }
 }).call(this,require("buffer").Buffer)
@@ -36653,7 +36623,8 @@ module.exports = {
     bufferFromHex: spendCrypto.bufferFromHex,
     getWalletFromSeed: spendCrypto.getWalletFromSeed,
     signWithPrivateKey: spendCrypto.signWithPrivateKey,
-    generateMnemonic: spendCrypto.generateMnemonic
+    generateMnemonic: spendCrypto.generateMnemonic ,
+    getAddressFromPrivateKey: spendCrypto.getAddressFromPrivateKey
 }
 },{"./crypto":126}],128:[function(require,module,exports){
 (function (Buffer){
