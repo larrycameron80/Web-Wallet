@@ -12,6 +12,7 @@ $(document).ready(function(){
 	// txTemplate.json
 	var txTemplate={"type":"auth/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgSend","value":{"from_address":"","to_address":"","amount":[{"denom":"","amount":""}]}}],"fee":{"amount":[],"gas":"200000"},"signatures":null,"memo":""}}
 
+	// signatureTemplate.json
    var signatureTemplate ={"pub_key": {"type": "tendermint/PubKeySecp256k1","value":""},"signature": ""}
     
 
