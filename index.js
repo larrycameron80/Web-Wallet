@@ -1,2 +1,4 @@
 window.utils = require('./tools/index');
-window.spendCrypto = require("./spend-crypto");
+window.jQuery = require("jquery");
+window.$ = window.jQuery ;
+window.spendCrypto = require("./spend-crypto/index") ;

@@ -2,7 +2,7 @@ let bip32 = require('bip32')
 let bip39 = require('bip39')
 let secp256k1 = require('secp256k1')
 let CryptoJS = require('crypto-js')
-const utils = require('../tools/index')
+const utils = require('../tools/index.js')
 
 let config = require("../config.json")
 
@@ -15,8 +15,8 @@ const bech32ify = utils.bech32ify
 function getWalletFromSeed(mnemonic) {
     const masterKey = deriveMasterKey(mnemonic)
     const keys = deriveKeypair(masterKey)
-    const address = getAddress(keys.public.hex)
-
+    const address = getAddress(keys.publicKey.hex)
+    console.log(keys, address)
     return {
         keys,
         address
@@ -44,7 +44,7 @@ function getAddress(publicKeyHex) {
     const message256 = CryptoJS.SHA256(message);
     const hex = CryptoJS.RIPEMD160(message256).toString()
     const buffer = Buffer.from(hex, "hex");
-    prefix = `spend`
+    const prefix = 'spend'
     const bech32 = bech32ify(hex, prefix)
 
     return {
@@ -63,22 +63,22 @@ function deriveMasterKey(mnemonic) {
 
     return masterKey
 }
-// derives masterkey to private and public keys
+// derives masterkey to privateKey and publicKey keys
 function deriveKeypair(masterKey) {
     const cosmosHD = masterKey.derivePath(hdPathAtom)
-    const private = {};
-    const public = {};
-    private.buffer = cosmosHD.privateKey;
-    private.hex = cosmosHD.privateKey.toString("hex")
-    public.buffer = secp256k1.publicKeyCreate(private.buffer, true)
-    public.base64 = public.buffer.toString("base64")
-    public.hex = public.buffer.toString("hex")
-    public.secp256k1prefix = "EB5AE98721".toLowerCase();
-    public.bech32 = bech32ify(public.secp256k1prefix + public.hex, "spendpub");
+    const privateKey = {};
+    const publicKey = {};
+    privateKey.buffer = cosmosHD.privateKey;
+    privateKey.hex = cosmosHD.privateKey.toString("hex")
+    publicKey.buffer = secp256k1.publicKeyCreate(privateKey.buffer, true)
+    publicKey.base64 = publicKey.buffer.toString("base64")
+    publicKey.hex = publicKey.buffer.toString("hex")
+    publicKey.secp256k1prefix = "EB5AE98721".toLowerCase();
+    publicKey.bech32 = bech32ify(publicKey.secp256k1prefix + publicKey.hex, "spendpub");
 
     return {
-        private,
-        public
+        privateKey,
+        publicKey
     }
 }
 
