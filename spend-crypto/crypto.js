@@ -2,7 +2,7 @@ let bip32 = require('bip32')
 let bip39 = require('bip39')
 let secp256k1 = require('secp256k1')
 let CryptoJS = require('crypto-js')
-const utils = require('../tools/index.js')
+const utils = require('../tools/index')
 
 let config = require("../config.json")
 
