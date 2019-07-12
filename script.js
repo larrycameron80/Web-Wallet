@@ -33,8 +33,8 @@ $(document).ready(function () {
 		//tuka paga na getWallet potocno na 
 		var wallet = spendCrypto.getWalletFromSeed(mnemonic);
 		$("#new-mnemonic").val(mnemonic);
-		$("#new-private").val(wallet.keys.privateKey.hex);
-		$("#new-public").val(wallet.keys.publicKey.bech32.string);
+		$("#new-private").val(wallet.keys.private.hex);
+		$("#new-public").val(wallet.keys.public.bech32.string);
 		$("#new-address").val(wallet.address.bech32.string);
 		// this must be first
 		$(".new-wallet.note").show()
@@ -44,8 +44,8 @@ $(document).ready(function () {
 		var mnemonic = $("#old-mnemonic").val().trim().replace(/\s{2,}/g, ' ');
 
 		var wallet = spendCrypto.getWalletFromSeed(mnemonic);
-		$("#private-from-mnemonic").val(wallet.keys.privateKey.hex);
-		$("#public-from-mnemonic").val(wallet.keys.publicKey.bech32.string);
+		$("#private-from-mnemonic").val(wallet.keys.private.hex);
+		$("#public-from-mnemonic").val(wallet.keys.public.bech32.string);
 		$("#address-from-mnemonic").val(wallet.address.bech32.string);
 	})
 
@@ -163,8 +163,8 @@ $(document).ready(function () {
 
 	async function getFaucetCoins(accAddress) {
 		// url can be configurable too, example localhost
-		var urlStake = "http://18.185.105.50:3000/stake/";
-		var urlSpend = "http://18.185.105.50:3000/spend/";
+		var urlStake = "http://18.185.105.50:9072/stake/";
+		var urlSpend = "http://18.185.105.50:9072/spend/";
 			await $.ajax({
 				url: urlSpend + accAddress,
 				}).done(function( data ) {
@@ -184,7 +184,7 @@ $(document).ready(function () {
 	$("#make-signature").on("click", function () {
 		var mnemonic = $("#mnemonic-for-sign").val().trim().replace(/\s{2,}/g, ' ');
 		var wallet = spendCrypto.getWalletFromSeed(mnemonic);
-		$("#private-for-sign").val(wallet.keys.privateKey.hex)
+		$("#private-for-sign").val(wallet.keys.private.hex)
 		doSigning()
 	})
 
