@@ -13,34 +13,37 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="display:none">
-
-	<nav class="navbar navbar-inverse">
-	    <div class="container-fluid">
-	      <div class="navbar-header">
-	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span> 
-	        </button>
-            <a href="#" class="navbar-left"><img src="logo.png" width="250px"></a>
-	           
-	      </div>
-	      <div class="collapse navbar-collapse" id="myNavbar">
-	        <ul class="nav navbar-nav">
-	          <li class="active"><a href="#new-wallet" section="new-wallet">New Wallet</a></li>
-	          <li ><a href="#recover-wallet" section="recover-wallet">Recover Wallet</a></li> 
-	          <li ><a href="#send-spend" section="send-spend">Send Spend</a></li> 
-	          <li ><a href="#staking" section="staking">Staking</a></li> 
-	          <!-- <li><a href="#transaction">Check Transactions</a></li>  -->
-	        </ul>
-	    
-	      </div>
-	    </div>
+<body>
+		
+	<img src="./bg-img.jpg" class=" bg-img img-responsive" />
+	<nav class="nav navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span> 
+			</button>
+			<a href="#" class="navbar-left"><img src="logo.png" width="250px"></a>
+				 
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#new-wallet" section="new-wallet">New Wallet</a></li>
+				<li ><a href="#recover-wallet" section="recover-wallet">Recover Wallet</a></li> 
+				<li ><a href="#balance-wallet" section="balance-wallet">Check Balance</a></li> 
+				<li ><a href="#faucet" section="faucet">Faucet</a></li> 
+				<li ><a href="#send-spend" section="send-spend">Send Spend</a></li> 
+				<li ><a href="#staking" section="staking">Staking</a></li> 
+				<!-- <li><a href="#transaction">Check Transactions</a></li>  -->
+			</ul>
+		
+			</div>
+		</div>
 	</nav>  
 	<div class="container section new-wallet">
 
-      <h4>New Mnemonic</h4>		
+		<h4>New Mnemonic</h4>		
 			<textarea id="new-mnemonic" readonly ></textarea>
 			<br>
 			<h4>New Private Key</h4>
@@ -50,7 +53,7 @@
 			<h4>New Spend Address</h4>
 			<input  id="new-address" val="" readonly />
 
-    		<button class="btn btn-primary" type="submit" id="generate-wallet" >GENERATE NEW WALLET</button>
+			<button class="btn btn-primary center-block" type="submit" id="generate-wallet" >GENERATE NEW WALLET</button>
 			<h4 class="note new-wallet">Keep mnemonic and private key on secure place (recomended offline)<br> they are the key for your wallet. <br>You will lose access to your funds if you lose it<br>We don't keep a copy for you</h4>
 
 	</div>
@@ -69,17 +72,43 @@
 		<input  id="address-from-mnemonic" val="" readonly />
 	</div>
 
+	<div class="container section balance-wallet" >
+		<h3 id="balance-wallet" >Balance</h3>
+
+		<h4>Insert Address</h4>
+		<textarea id="balance-address" ></textarea>
+		<a target="_blank" id="explorer-link">
+			<button id="balance-send" href="" class="btn btn-primary center-block">Query Balance</button>
+		</a>
+	</div>
+
+	<div class="container section faucet" >
+		<h3 id="faucet" >Spend Faucet</h3>
+
+		<p>The rules are:</p>
+		<ul>
+			<li>1 Givaway Per User</li>
+			<li>Blacklist Period of 24 Hours</li>
+			<li>Recieve 50 Spend and Stake test coins</li>
+		</ul>
+		<h4>Spend Address</h4>
+		<textarea id="faucet-address" ></textarea>
+		<div id="faucet-explorer"></div>
+	
+		<button id="faucet-send" class="btn btn-primary center-block">Request Coins</button>
+	</div>
+
 	<div class="container section send-spend staking">
 
-     <ul class="nav nav-pills">
-         <li class="active"><a data-toggle="pill" href="#create-tx">Create Transaction</a></li>
-         <li class="active"><a data-toggle="pill" href="#delegate-tx">Delegate Tokens</a></li>
-         <li><a data-toggle="pill" href="#sign">Sign</a></li>
-         <li><a data-toggle="pill" href="#broadcast">Brodcast</a></li>
-     </ul>
-     <div class="tab-content">
-         <div id="create-tx" class="tab-pane  active">
-             <div class="section generate-transaction">
+	 <ul class="nav nav-pills">
+		 <li class="active"><a data-toggle="pill" href="#create-tx">Create Transaction</a></li>
+		 <li class="active"><a data-toggle="pill" href="#delegate-tx">Delegate Tokens</a></li>
+		 <li><a data-toggle="pill" href="#sign">Sign</a></li>
+		 <li><a data-toggle="pill" href="#broadcast">Brodcast</a></li>
+	 </ul>
+	 <div class="tab-content">
+		 <div id="create-tx" class="tab-pane  active">
+			 <div class="section generate-transaction">
 					<h3 >Generate Transaction</h3>
 					<br>
 					<h4>From Address</h4>
@@ -91,30 +120,24 @@
 					<div class="half">
 					<h4>Amount</h4>
 					<input  id="amount" type="number"  val=""  />
-					<br>
-					</div>
-					<div class="half">
 					<h4>Coin</h4>
 					<select  id="coin" val=""  >
 						<option>spend</option>
 						<option>stake</option>
 					</select>
+					<br>
+					</div>
+					<div class="half">					
+							<textarea style="display:none" id="new-tx" readonly ></textarea>
+							<button  id="continue-tx" class="btn btn-primary btn-lg center-block">Continue </button>
 					</div>
 
-					<br><br><br><br>
-
-					<h4>indent<input type="checkbox" id="indent" checked></input></h4>
-					
-					<h4>New Transaction</h4>
-					<textarea style="display:none" id="new-tx" readonly ></textarea>
-
-					<button type="button" id="continue-tx" class="btn-primary">Next</button>
 
 				</div>
 			</div>
 
-         <div id="delegate-tx" class="tab-pane active">
-             <div class="section generate-transaction">
+		 <div id="delegate-tx" class="tab-pane active">
+			 <div class="section generate-transaction">
 					<h3 >Delegate </h3>
 					<br>
 					<h4>From Delegator Address</h4>
@@ -126,29 +149,23 @@
 					<div class="half">
 					<h4>Amount</h4>
 					<input  id="amount-stake" type="number"  />
+					<h4>Coin</h4>
+					<input  id="coin-stake" disabled=""  value="stake"  />
 					<br>
 					</div>
 					<div class="half">
-					<h4>Coin</h4>
-					<input  id="coin-stake" disabled=""  value="stake"  />
-
+					<button type="button" id="continue-stake" class="btn btn-primary btn-lg center-block">Continue</button>
 					</div>
-
-					<br><br><br><br>
-
-					<h4>indent<input type="checkbox" id="stake-indent" checked></input></h4>
-					
-					<h4>Start Delegating</h4>
+						
 					<textarea style="display:none" id="stake-tx" readonly ></textarea>
 
-					<button type="button" id="continue-stake" class="btn-primary">Next</button>
 
 				</div>
 			</div>
 
 
-         <div id="sign" class="tab-pane fade in ">
-            <div class="section sign-transaction">
+		 <div id="sign" class="tab-pane fade in ">
+			<div class="section sign-transaction">
 				<div style="display:none">
 
 					<h3 >Sign Transaction</h3>
@@ -169,7 +186,7 @@
 
 					<h4>indent<input type="checkbox" id="indent-signed" checked></input></h4>
 
-					<button id="request-info" >Request <br> Account Number And Sequence 
+					<button id="request-info" class="btn btn-primary center-block">Request <br> Account Number And Sequence 
 						<BR>From Full Node</button>
 
 				</div>
@@ -184,20 +201,20 @@
 					<textarea id="private-for-sign" ></textarea>
 				</div><br>
 
-				<button id="make-signature" class="btn-primary">Make Signature</button>
+				<button id="make-signature" class="btn-primary center-block">Make Signature</button>
 				<h4>Signed Transaction</h4>
 
 				<textarea  id="signed-tx" readonly ></textarea>
 
-				<button id="broadcast-transaction" class="btn-primary">Broadcast</button>
+				<button id="broadcast-transaction" class="btn btn-primary center-block">Broadcast</button>
 
 				</div>
 			</div>
 
-         <div id="broadcast" class="tab-pane fade in ">
-             <div class="section broadcast-transaction">
-       			<a id="view-tx" href="">
-						<button >View  on Explorer</button>
+		 <div id="broadcast" class="tab-pane fade in ">
+			 <div class="section broadcast-transaction">
+					 <a id="view-tx" target="_blank" href="">
+						<button  class="btn btn-primary center-block">View  on Explorer</button>
 					</a>
 				</div>
 			</div>
